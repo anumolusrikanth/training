@@ -1,0 +1,6 @@
+default[:java][:source]="https://s3-us-west-1.amazonaws.com/anumolu/Java/jdk-7-linux-x64.bin"
+default[:java][:jdk_home]="/opt"
+default[:java][:temp_dir]="/tmp"
+default[:java][:user]="root"
+default[:java][:group]="root"
+default[:java][:old_jdk_home] = "/opt/jdk1.6.0_14"

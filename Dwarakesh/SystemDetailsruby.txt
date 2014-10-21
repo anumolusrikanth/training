@@ -1,0 +1,25 @@
+#!/usr/bin/ruby
+
+puts "****Details  of the Host***"
+system 'echo "$HOSTNAME"'
+puts "*************Total Swap Memory ******************"
+free_contents = %x('free')
+puts free_contents
+puts "****************Free Space in the file system*****"
+disk_space=%x('df')
+puts disk_space
+puts "*****************Processor and Kernel Details of the Host*******"
+Kernel.system "uname -a"
+puts "**************Names of users*********************"
+Kernel.system "cat /etc/issue"
+puts "*****************Heap Size **********************"
+Kernel.system "java -XX:+PrintFlagsFinal -version | grep HeapSize |head -4"
+puts "******************Java Version *****************"
+Kernel.system "java -version"
+puts "**************Number of users*********************"
+Kernel.system "awk 'END {print NR}' /etc/passwd"
+puts "**************Names of users*********************"
+Kernel.system "awk -F':' '{ print $1}' /etc/passwd"
+puts "******************Number of CPU(s)***************"
+IO.popen("grep -i CPU", "w").write ( IO.popen('lscpu').read )
+

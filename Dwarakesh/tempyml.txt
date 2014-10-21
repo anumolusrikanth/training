@@ -1,0 +1,6 @@
+- company:
+  - id: google
+  - url: www.google.com
+- company:
+  - id: yahoo
+  - fullname: www.yahoo.com

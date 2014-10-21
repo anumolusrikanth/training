@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcat-users>
+<% @roles.each do |role| -%>
+<role rolename="<%= role %>" />
+<% @users.each do |user| -%>
+<user username="<%= user['id'] %>" password="<%= user['password'] %>" roles="<%= user['roles'].join(',') %> " />
+</tomcat-users>

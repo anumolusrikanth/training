@@ -1,0 +1,21 @@
+cat /proc/cpuinfo | grep processor | wc -l | awk '{ print "Number of Cpus: "$1""}'
+echo ""
+java -version 2> version.txt
+cat version.txt | awk 'NR==1'
+echo ""
+echo "Memory Space Details"
+free -t -m | grep "Total" | awk '{ print "Total Memory space  : "$2 " MB";
+print "Used Memory Space   : "$3" MB";
+print "Free Memory         : "$4" MB";
+}'
+echo ""
+df -h | awk '{print $1}' > firstfile.txt
+df -h | awk '{print $2}' > secondfile.txt
+df -h | awk '{print $3}' > thirdfile.txt
+df -h | awk '{print $4}' > fourthfile.txt
+df -h | awk '{print $5}' > fifthfile.txt
+
+pr -m -t firstfile.txt secondfile.txt thirdfile.txt fourthfile.txt fifthfile.txt
+echo ""
+echo "All Host Entries"
+cat /etc/hosts

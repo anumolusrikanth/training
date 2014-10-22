@@ -9,7 +9,7 @@ def check_url(arr)
  res = req.request_head(url.path)
  rescue
  puts "Wrong URL-ERROR!"
- exit(0)
+ return 0
  end
  puts "Correct URL"
 end
@@ -17,10 +17,11 @@ end
 hash = YAML.load(File.read("temp.yml"))
 newarray=hash.values
 for i in 0...newarray.length
- puts "#{newarray[i].fetch("url")}"
+# puts "#{newarray[i].fetch("url")}"
  arr="#{newarray[i].fetch("url")}"
  check_url(arr)
 end
+
 
 
 ~

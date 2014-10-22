@@ -1,22 +1,23 @@
 #!/usr/bin/ruby
 require "net/http"
 require 'yaml'
+def check_url(arr)
+ begin
+ url = URI.parse("#{arr}/")
+ puts url
+ req = Net::HTTP.new(url.host,url.port)
+ res = req.request_head(url.path)
+ rescue
+ puts "Wrong URL-ERROR!"
+ exit(0)
+ end
+ puts "Correct URL"
+end
+
 hash = YAML.load(File.read("temp.yml"))
 newarray=hash.values
-puts "#{newarray[0].fetch("url")}"
-arr="#{newarray[0].fetch("url")}"
-begin
-url = URI.parse("#{arr}/")
-puts url
-req = Net::HTTP.new(url.host,url.port)
-res = req.request_head(url.path)
-rescue
-puts "Wrong URL-ERROR!"
-exit(0)
-end
-puts "Correct URL"
-
-
-
+puts "#{newarray[1].fetch("url")}"
+arr="#{newarray[1].fetch("url")}"
+check_url(arr)
 
 ~

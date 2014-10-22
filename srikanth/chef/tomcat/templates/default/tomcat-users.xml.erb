@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tomcat-users>
-<% @roles.each do |role| -%>
-<role rolename="<%= role %>" />
-<% @users.each do |user| -%>
-<user username="<%= user['id'] %>" password="<%= user['password'] %>" roles="<%= user['roles'].join(',') %> " />
+users=<% @node['tomcat']['users'].to_hash -%>
+<% users.each do |key, value| -%>
+<role rolename="<%= @node['tomcat']['role']  %>" />
+<user username="<%= key %>" password="<%= value %>" roles="<%= @node['tomcat']['role'] %>" />
+<% end %>
 </tomcat-users>

@@ -26,8 +26,4 @@ template "/opt/apache-tomcat-7.0.39/conf/tomcat-users.xml" do
  source 'tomcat-users.xml.erb'
  owner 'root'
  mode '0644'
- variables (
- :users => data_bags.users,
- :roles => data_bags.roles,
- )
 end

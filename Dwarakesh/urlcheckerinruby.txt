@@ -16,8 +16,10 @@ end
 
 hash = YAML.load(File.read("temp.yml"))
 newarray=hash.values
-puts "#{newarray[1].fetch("url")}"
-arr="#{newarray[1].fetch("url")}"
-check_url(arr)
+for i in 0..1
+ puts "#{newarray[i].fetch("url")}"
+ arr="#{newarray[i].fetch("url")}"
+ check_url(arr)
+end
 
 ~

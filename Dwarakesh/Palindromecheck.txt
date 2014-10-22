@@ -14,7 +14,7 @@ class Palindromecheck
 end
 #Now Using above class to create objects
 Object=Palindromecheck.new
-print "enter a string:\n"
+print "Enter the Input:\n"
 string = gets.chomp
 puts string
 Object.palindrome(string)

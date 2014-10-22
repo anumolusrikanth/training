@@ -1,0 +1,17 @@
+a=2
+read num
+
+while($num % $a = 0)
+do
+
+if [ `expr $num % $a` = 0]
+then
+echo "$num is not a prime number as divisible by $a"
+exit
+
+fi
+i = `expr $i + 1
+done
+
+then 
+echo "$num is a prime number"

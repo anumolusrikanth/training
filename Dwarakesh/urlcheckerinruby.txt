@@ -1,0 +1,11 @@
+#!/usr/bin/ruby
+require "net/http"
+begin
+url = URI.parse("http://www.stackoverflow.com"+"/")
+req = Net::HTTP.new(url.host,url.port)
+res = req.request_head(url.path)
+rescue
+ puts "Wrong URL-ERROR!"
+ exit(0)
+end
+puts "Correct URL"

@@ -1,0 +1,6 @@
+#!/usr/bin/ruby
+require 'yaml'
+require "net/http"
+y = YAML.load_file('temp.yml')
+result = y.select{ |x| x['company'].first['id'] == 'google'}
+puts result[0]

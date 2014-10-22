@@ -1,0 +1,22 @@
+echo "*****************Host name**********************"
+hostname
+echo "*****************Processor and Kernel Details of the Host**********************"
+uname -a
+echo "*****************OS Version**********************"
+cat /etc/issue
+echo "******************Java Version *****************"
+java -version
+echo "******************Number of CPU(s)***************"
+lscpu|grep 'CPU(s)'
+echo "*****************Heap Size **********************"
+java -XX:+PrintFlagsFinal -version | grep HeapSize |head -4
+echo "*************Total Swap Memory ******************"
+free
+echo "**************Number of users*********************"
+awk 'END {print NR}' /etc/passwd
+echo "**************Names of users*********************"
+awk -F':' '{ print $1}' /etc/passwd
+echo "**************Currently Logged in Users*********************"
+users
+echo "****************Free Space in the file system*****"
+df -a

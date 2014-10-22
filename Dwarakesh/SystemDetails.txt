@@ -1,0 +1,12 @@
+#!/usr/bin/ruby
+
+puts "****Details  of the Host***"
+system 'echo "$HOSTNAME"'
+IO.popen("grep -i CPU", "w").write ( IO.popen('lscpu').read )
+free_contents = %x('free')
+puts free_contents
+disk_space=%x('df')
+puts disk_space
+os_version=%x('uname')
+puts os_version
+~

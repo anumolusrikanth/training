@@ -1,0 +1,73 @@
+Step 1:Create and open chef repository:
+mkdir ~/chef-repo
+cd ~/chef-repo
+
+Step 2: Create a Web Server Recipe file:webserver.rb(contains package,service and resource).
+package 'httpd'
+service 'httpd' do
+  action [:start, :enable]
+end
+template '/var/www/html/index.html' do
+  source 'index.html.erb'
+end
+service 'iptables' do
+  action :stop
+end
+
+Apply the ruby script : sudo chef-apply webserver.rb
+
+Step 3:Create a cookbook:
+     
+   Create and open the cookbook directory-
+          mkdir cookbooks
+          cd    cookbooks
+    Create a new cookbook and obtain the tree listing
+          chef generate cookbook learn_chef_httpd
+           tree
+    Add the homepage to the index and view the tree listing
+        chef generate template learn_chef_httpd index.html
+        tree
+
+Step 4 :Homepage resource has to be externally linked:index.html.erb.
+
+<html>
+  <body>
+    <h1>hello world</h1>
+  </body>
+</html>
+          sudo chef-client --local-mode --runlist 'recipe[learn_chef_httpd]'
+The first web server is brought running
+Step 5:Configure another server from your workstation:
+           
+Install the Chef Development Kit
+Sign up for hosted Chef-From your workstation, just fill out the form on our sign-up page.
+
+Install the Starter Kit-save chef-starter.zip and add it to the  ~/chef-repo directory
+
+Get the Apache cookbook
+
+Chef Supermarket is a place for the community to share cookbooks. Chef Supermarket contains the Apache web server cookbook for you to download.Chef server gives you a persistent location to store your cookbooks and information about your servers. The knife command enables you to communicate with the Chef server.
+
+From your ~/chef-repo directory, run these commands to download the web server cookbook from Supermarket and extract it.
+
+knife cookbook site download learn_chef_httpd
+tar -zxvf learn_chef_httpd-0.1.0.tar.gz -C cookbooks
+
+
+Upload your cookbook to the Chef server
+knife cookbook upload learn_chef_httpd
+
+Step 6: Bootstrap your node
+From your workstation, run this command to bootstrap your node. Replace {{address}} with your server's external address,{{user}} with your username, and {{password}} with your password.
+
+knife bootstrap {{address}} --ssh-user {{user}} --ssh-password '{{password}}' \ --sudo --use-sudo-password --node-name node1 \ --run-list 'recipe[learn_chef_httpd]'
+
+Your node was associated with your hosted Chef account. To verify this, navigate to the Chef management console. From the Nodes tab, you'll see an entry for the node you just bootstrapped.
+
+knife node list
+
+knife node show node1
+
+
+Step 7: Your node did an initial check in with the Chef server and ran the web server cookbook. To verify this, open a web browser from your workstation and navigate to your web server.
+
